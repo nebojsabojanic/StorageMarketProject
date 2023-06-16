@@ -1,6 +1,7 @@
 using StorageMarketProjectAPI.Models.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using StorageMarketProjectAPI.Sevices;
+using Microsoft.Extensions.Options;
 
 namespace StorageMarketProject
 {
@@ -21,7 +22,8 @@ namespace StorageMarketProject
             {
                 //options.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=EFCoreAPIMentorship;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Multi Subnet Failover=False");
 
-                options.UseSqlServer("Data Source = localhost\\SQLEXPRESS; Initial Catalog = StorageDB; User ID = sa; Password = 1234");
+                //options.UseSqlServer("Data Source = localhost\\SQLEXPRESS; Initial Catalog = StorageDB; User ID = sa; Password = 1234");
+                options.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=StorageDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
             });
 
             builder.Services.AddScoped<IProductService, ProductService>();
