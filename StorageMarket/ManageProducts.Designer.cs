@@ -30,8 +30,7 @@
         {
             this.productListDgv = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtProductId = new System.Windows.Forms.TextBox();
-            this.getSingleProductBtn = new System.Windows.Forms.Button();
+            this.productClearSelection = new System.Windows.Forms.Button();
             this.getProductsBtn = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.productDeleteBtn = new System.Windows.Forms.Button();
@@ -47,10 +46,13 @@
             this.productListDgv.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.productListDgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.productListDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.productListDgv.Location = new System.Drawing.Point(6, 74);
+            this.productListDgv.MultiSelect = false;
             this.productListDgv.Name = "productListDgv";
-            this.productListDgv.Size = new System.Drawing.Size(544, 337);
+            this.productListDgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.productListDgv.Size = new System.Drawing.Size(544, 308);
             this.productListDgv.TabIndex = 0;
             this.productListDgv.SelectionChanged += new System.EventHandler(this.productListDgv_SelectionChanged);
             // 
@@ -59,8 +61,7 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.txtProductId);
-            this.groupBox1.Controls.Add(this.getSingleProductBtn);
+            this.groupBox1.Controls.Add(this.productClearSelection);
             this.groupBox1.Controls.Add(this.getProductsBtn);
             this.groupBox1.Controls.Add(this.productListDgv);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
@@ -70,24 +71,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Products";
             // 
-            // txtProductId
+            // productClearSelection
             // 
-            this.txtProductId.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtProductId.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtProductId.Location = new System.Drawing.Point(217, 19);
-            this.txtProductId.Name = "txtProductId";
-            this.txtProductId.Size = new System.Drawing.Size(100, 40);
-            this.txtProductId.TabIndex = 3;
-            // 
-            // getSingleProductBtn
-            // 
-            this.getSingleProductBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.getSingleProductBtn.Location = new System.Drawing.Point(333, 19);
-            this.getSingleProductBtn.Name = "getSingleProductBtn";
-            this.getSingleProductBtn.Size = new System.Drawing.Size(100, 40);
-            this.getSingleProductBtn.TabIndex = 2;
-            this.getSingleProductBtn.Text = "Find product";
-            this.getSingleProductBtn.UseVisualStyleBackColor = true;
+            this.productClearSelection.Location = new System.Drawing.Point(450, 388);
+            this.productClearSelection.Name = "productClearSelection";
+            this.productClearSelection.Size = new System.Drawing.Size(100, 23);
+            this.productClearSelection.TabIndex = 4;
+            this.productClearSelection.Text = "Clear Selection";
+            this.productClearSelection.UseVisualStyleBackColor = true;
+            this.productClearSelection.Click += new System.EventHandler(this.productClearSelection_Click);
             // 
             // getProductsBtn
             // 
@@ -122,6 +114,7 @@
             this.productDeleteBtn.TabIndex = 2;
             this.productDeleteBtn.Text = "Delete";
             this.productDeleteBtn.UseVisualStyleBackColor = true;
+            this.productDeleteBtn.Click += new System.EventHandler(this.productDeleteBtn_Click);
             // 
             // productUpdateBtn
             // 
@@ -155,7 +148,6 @@
             this.Text = "ManageProducts";
             ((System.ComponentModel.ISupportInitialize)(this.productListDgv)).EndInit();
             this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -169,8 +161,7 @@
         private System.Windows.Forms.Button productDeleteBtn;
         private System.Windows.Forms.Button productUpdateBtn;
         private System.Windows.Forms.Button productCreateBtn;
-        private System.Windows.Forms.TextBox txtProductId;
-        private System.Windows.Forms.Button getSingleProductBtn;
         private System.Windows.Forms.Button getProductsBtn;
+        private System.Windows.Forms.Button productClearSelection;
     }
 }

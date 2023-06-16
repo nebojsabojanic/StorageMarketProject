@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,6 +9,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
@@ -83,6 +85,47 @@ namespace StorageMarket
                 item.Cells["ProductName"].ReadOnly = false;
                 item.Cells["ProductCost"].ReadOnly = false;
             }
+
+            productListDgv.ClearSelection();
+        }
+
+        private async Task<List<Product>> CreateProductsAsync(string path, Product product)
+        {
+            /*var stringContent2 = new StringContent(product.ToString());
+            var response2 = await this.client.PostAsync("http://www.sample.com/write", stringContent2);*/
+
+            var stringContent = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
+            var response2 = await this.client.PostAsync("http://www.sample.com/write", stringContent);
+
+            HttpResponseMessage response = await this.client.PostAsync(path, stringContent).ConfigureAwait(false);
+            
+            if (response.IsSuccessStatusCode)
+            {
+                var stringContent = await response.Content.ReadAsStringAsync();
+                products = JsonConvert.DeserializeObject<List<Product>>(stringContent);
+            }
+
+            return products;
+        }
+
+        private void productListDgv_SelectionChanged(object sender, EventArgs e)
+        {
+            if (productListDgv.SelectedRows.Count > 0)
+            {
+                DataGridViewRow productRow = productListDgv.SelectedRows[0];
+                var foundProduct = productRow.DataBoundItem as Product;
+                SelectedProduct = foundProduct;
+
+                productCreateBtn.Enabled = false;
+                productUpdateBtn.Enabled = true;
+                productDeleteBtn.Enabled = true;
+            }
+            else
+            {
+                productCreateBtn.Enabled = true;
+                productUpdateBtn.Enabled = false;
+                productDeleteBtn.Enabled = false;
+            }
         }
 
         private void productCreateBtn_Click(object sender, EventArgs e)
@@ -99,26 +142,6 @@ namespace StorageMarket
             }
         }
 
-        private void productListDgv_SelectionChanged(object sender, EventArgs e)
-        {
-            if (productListDgv.SelectedRows.Count > 0)
-            {
-                DataGridViewRow productRow = productListDgv.SelectedRows[0];
-                var foundProduct = productRow.DataBoundItem as Product;
-                //productListDgv = foundProduct;
-
-                productCreateBtn.Enabled = false;
-                productUpdateBtn.Enabled = true;
-                productDeleteBtn.Enabled = true;
-            }
-            else
-            {
-                productCreateBtn.Enabled = true;
-                productUpdateBtn.Enabled = false;
-                productDeleteBtn.Enabled = false;
-            }
-        }
-
         private void productUpdateBtn_Click(object sender, EventArgs e)
         {
             if (SelectedProduct == null)
@@ -126,7 +149,40 @@ namespace StorageMarket
                 return;
             }
 
+            try
+            {
+                var inputWindow = new CRUDProductsForm(SelectedProduct.ProductId, SelectedProduct.ProductName, SelectedProduct.ProductCost);
+                inputWindow.Initialize(this.client);
+                inputWindow.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"{ex}", "An unexpected error has occurred!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
+        private void productDeleteBtn_Click(object sender, EventArgs e)
+        {
+            if (SelectedProduct == null)
+            {
+                return;
+            }
+
+            try
+            {
+                var inputWindow = new CRUDProductsForm(SelectedProduct.ProductId, SelectedProduct.ProductName, SelectedProduct.ProductCost);
+                inputWindow.Initialize(this.client);
+                inputWindow.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"{ex}", "An unexpected error has occurred!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void productClearSelection_Click(object sender, EventArgs e)
+        {
+            productListDgv.ClearSelection();
         }
     }
 }

@@ -30,13 +30,12 @@
         {
             this.storageListDgv = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtStorageId = new System.Windows.Forms.TextBox();
-            this.getSingleStorageBtn = new System.Windows.Forms.Button();
             this.getStoragesBtn = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.storageDeleteBtn = new System.Windows.Forms.Button();
             this.storageUpdateBtn = new System.Windows.Forms.Button();
             this.storageCreateBtn = new System.Windows.Forms.Button();
+            this.storageClearSelectionstorageClearSelection = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.storageListDgv)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -50,16 +49,16 @@
             this.storageListDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.storageListDgv.Location = new System.Drawing.Point(6, 74);
             this.storageListDgv.Name = "storageListDgv";
-            this.storageListDgv.Size = new System.Drawing.Size(544, 337);
+            this.storageListDgv.Size = new System.Drawing.Size(544, 308);
             this.storageListDgv.TabIndex = 0;
+            this.storageListDgv.SelectionChanged += new System.EventHandler(this.storageListDgv_SelectionChanged);
             // 
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.txtStorageId);
-            this.groupBox1.Controls.Add(this.getSingleStorageBtn);
+            this.groupBox1.Controls.Add(this.storageClearSelectionstorageClearSelection);
             this.groupBox1.Controls.Add(this.getStoragesBtn);
             this.groupBox1.Controls.Add(this.storageListDgv);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
@@ -69,26 +68,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Storages";
             // 
-            // txtStorageId
-            // 
-            this.txtStorageId.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtStorageId.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStorageId.Location = new System.Drawing.Point(217, 19);
-            this.txtStorageId.Name = "txtStorageId";
-            this.txtStorageId.Size = new System.Drawing.Size(100, 40);
-            this.txtStorageId.TabIndex = 3;
-            this.txtStorageId.TextChanged += new System.EventHandler(this.txtProductId_TextChanged);
-            // 
-            // getSingleStorageBtn
-            // 
-            this.getSingleStorageBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.getSingleStorageBtn.Location = new System.Drawing.Point(333, 19);
-            this.getSingleStorageBtn.Name = "getSingleStorageBtn";
-            this.getSingleStorageBtn.Size = new System.Drawing.Size(100, 40);
-            this.getSingleStorageBtn.TabIndex = 2;
-            this.getSingleStorageBtn.Text = "Find Product";
-            this.getSingleStorageBtn.UseVisualStyleBackColor = true;
-            // 
             // getStoragesBtn
             // 
             this.getStoragesBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -96,7 +75,7 @@
             this.getStoragesBtn.Name = "getStoragesBtn";
             this.getStoragesBtn.Size = new System.Drawing.Size(100, 40);
             this.getStoragesBtn.TabIndex = 1;
-            this.getStoragesBtn.Text = "List all products";
+            this.getStoragesBtn.Text = "List all storages";
             this.getStoragesBtn.UseVisualStyleBackColor = true;
             this.getStoragesBtn.Click += new System.EventHandler(this.getStoragesBtn_Click);
             // 
@@ -122,6 +101,7 @@
             this.storageDeleteBtn.TabIndex = 2;
             this.storageDeleteBtn.Text = "Delete";
             this.storageDeleteBtn.UseVisualStyleBackColor = true;
+            this.storageDeleteBtn.Click += new System.EventHandler(this.storageDeleteBtn_Click);
             // 
             // storageUpdateBtn
             // 
@@ -131,6 +111,7 @@
             this.storageUpdateBtn.TabIndex = 1;
             this.storageUpdateBtn.Text = "Update";
             this.storageUpdateBtn.UseVisualStyleBackColor = true;
+            this.storageUpdateBtn.Click += new System.EventHandler(this.storageUpdateBtn_Click);
             // 
             // storageCreateBtn
             // 
@@ -140,6 +121,17 @@
             this.storageCreateBtn.TabIndex = 0;
             this.storageCreateBtn.Text = "Create";
             this.storageCreateBtn.UseVisualStyleBackColor = true;
+            this.storageCreateBtn.Click += new System.EventHandler(this.storageCreateBtn_Click);
+            // 
+            // storageClearSelectionstorageClearSelection
+            // 
+            this.storageClearSelectionstorageClearSelection.Location = new System.Drawing.Point(450, 388);
+            this.storageClearSelectionstorageClearSelection.Name = "storageClearSelectionstorageClearSelection";
+            this.storageClearSelectionstorageClearSelection.Size = new System.Drawing.Size(99, 23);
+            this.storageClearSelectionstorageClearSelection.TabIndex = 2;
+            this.storageClearSelectionstorageClearSelection.Text = "Clear Selection";
+            this.storageClearSelectionstorageClearSelection.UseVisualStyleBackColor = true;
+            this.storageClearSelectionstorageClearSelection.Click += new System.EventHandler(this.storageClearSelectionstorageClearSelection_Click);
             // 
             // ManageStorages
             // 
@@ -153,7 +145,6 @@
             this.Text = "ManageStorages";
             ((System.ComponentModel.ISupportInitialize)(this.storageListDgv)).EndInit();
             this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -167,8 +158,7 @@
         private System.Windows.Forms.Button storageDeleteBtn;
         private System.Windows.Forms.Button storageUpdateBtn;
         private System.Windows.Forms.Button storageCreateBtn;
-        private System.Windows.Forms.TextBox txtStorageId;
-        private System.Windows.Forms.Button getSingleStorageBtn;
         private System.Windows.Forms.Button getStoragesBtn;
+        private System.Windows.Forms.Button storageClearSelectionstorageClearSelection;
     }
 }

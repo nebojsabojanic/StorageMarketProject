@@ -34,8 +34,8 @@
             this.txtProductId = new System.Windows.Forms.TextBox();
             this.txtProductName = new System.Windows.Forms.TextBox();
             this.txtProductCost = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.cancelFormBtn = new System.Windows.Forms.Button();
+            this.submitFormBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -68,6 +68,7 @@
             // txtProductId
             // 
             this.txtProductId.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtProductId.Enabled = false;
             this.txtProductId.Location = new System.Drawing.Point(128, 27);
             this.txtProductId.Name = "txtProductId";
             this.txtProductId.Size = new System.Drawing.Size(100, 20);
@@ -89,33 +90,35 @@
             this.txtProductCost.Size = new System.Drawing.Size(100, 20);
             this.txtProductCost.TabIndex = 6;
             // 
-            // button1
+            // cancelFormBtn
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(149, 246);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "Cancel";
-            this.button1.UseVisualStyleBackColor = true;
+            this.cancelFormBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cancelFormBtn.Location = new System.Drawing.Point(149, 246);
+            this.cancelFormBtn.Name = "cancelFormBtn";
+            this.cancelFormBtn.Size = new System.Drawing.Size(75, 23);
+            this.cancelFormBtn.TabIndex = 8;
+            this.cancelFormBtn.Text = "Cancel";
+            this.cancelFormBtn.UseVisualStyleBackColor = true;
+            this.cancelFormBtn.Click += new System.EventHandler(this.cancelFormBtn_Click);
             // 
-            // button2
+            // submitFormBtn
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button2.Location = new System.Drawing.Point(12, 246);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 9;
-            this.button2.Text = "Finish";
-            this.button2.UseVisualStyleBackColor = true;
+            this.submitFormBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.submitFormBtn.Location = new System.Drawing.Point(12, 246);
+            this.submitFormBtn.Name = "submitFormBtn";
+            this.submitFormBtn.Size = new System.Drawing.Size(75, 23);
+            this.submitFormBtn.TabIndex = 9;
+            this.submitFormBtn.Text = "Finish";
+            this.submitFormBtn.UseVisualStyleBackColor = true;
+            this.submitFormBtn.Click += new System.EventHandler(this.submitFormBtn_Click);
             // 
             // CRUDProductsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(236, 281);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.submitFormBtn);
+            this.Controls.Add(this.cancelFormBtn);
             this.Controls.Add(this.txtProductCost);
             this.Controls.Add(this.txtProductName);
             this.Controls.Add(this.txtProductId);
@@ -139,7 +142,7 @@
         private System.Windows.Forms.TextBox txtProductId;
         private System.Windows.Forms.TextBox txtProductName;
         private System.Windows.Forms.TextBox txtProductCost;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button cancelFormBtn;
+        private System.Windows.Forms.Button submitFormBtn;
     }
 }
